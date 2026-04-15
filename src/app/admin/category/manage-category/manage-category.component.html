@@ -1,0 +1,85 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Category</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a>Dashboard</a></li>
+
+                <li class="breadcrumb-item text-white active" aria-current="page">Add Category</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-md h5">Categories List</div>
+            <div class="col-md text-end ">
+                <button class="btn btn-primary btn-sm" routerLink="/admin/category/add">+ Add New Category</button>
+
+
+            </div>
+        </div>
+        <small></small>
+        <div class="row g-4">
+            <div class="col-md-12 ">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+
+                    <table class="table">
+                        <thead class="table-primary table-bordered">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(i of categories ; track $index){
+                            <tr>
+                                <th scope="row">{{$index+1}}</th>
+                                <td>{{i.name}}</td>
+                                <td>
+                                    <img [src]="i.imgUrl" alt="" height="150px" width="120px"
+                                        class="img-thumbnail rounded">
+                                </td>
+                                <td>
+                                    @if(i.status==true){
+                                    <span>Active</span>
+                                    }
+                                    @else{
+                                    <span>Inactive</span>
+                                    }
+                                </td>
+                                <td>{{i.createdAt | date}}</td>
+
+                                <td>
+                                    <button class="btn btn-primary btn-sm"
+                                        [routerLink]="['/admin/category/update',i.id]">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    &nbsp;
+                                    <button class="btn btn-danger btn-sm" (click)="deleteCat(i.id)">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

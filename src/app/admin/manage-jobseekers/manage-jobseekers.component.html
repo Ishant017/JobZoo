@@ -1,0 +1,94 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Users</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item "><a routerLink="/admin/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Job Seekers</li>
+                    <!--- <li class="breadcrumb-item text-dark"><a routerLink="/admin/manage-category">Categories</a></li>-->
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Jobs Start -->
+<div class="container-fluid py-5">
+    <div class="container ">
+
+        <!--<h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>-->
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Qualification</th>
+                            <th scope="col">Work Experience</th>
+                            <th scope="col">Awards</th>
+                            <th scope="col">About</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (x of jobseekers; track $index) {
+                        <tr>
+                            <th scope="row">{{$index+1}}</th>
+
+                            <td>{{ x.name }}</td>
+                            <td>{{ x.email }}</td>
+                            <td>{{ x.contact }}</td>
+                            <td>{{ x.qualification }}</td>
+                            <td>{{ x.workExperience }}</td>
+                            <td>{{ x.awards }}</td>
+                            <td>{{ x.about }}</td>
+
+
+                            <td>
+                                @if(x.status){
+                                <span class="badge bg-success">Active</span>
+
+                                }
+                                @else{
+                                <span class="badge bg-danger">Blocked</span>
+                                }
+
+
+
+                            </td>
+
+
+
+                            <td width="150px">
+                                @if(x.status){
+                                <button class="btn text-danger btn-sm mx-1" (click)="delete(x.id,false)"><i
+                                        class="bi bi-ban"></i> Block</button>
+                                }
+                                @else{
+                                <button class="btn text-success mx-1" (click)="delete(x.id,true)"><i
+                                        class="bi bi-check fs-4"></i>Unblock</button>
+                                }
+
+
+
+
+
+                            </td>
+
+                        </tr>}
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Jobs End -->

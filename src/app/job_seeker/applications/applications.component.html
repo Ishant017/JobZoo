@@ -1,0 +1,78 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">My Applications</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a routerLink="/customer/home" routerLinkActive="active">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Applications</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+
+
+
+
+
+<div class="container my-5 pt-5 pb-4">
+    <div class="tab-class  wow fadeInUp" data-wow-delay="0.3s">
+
+
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Resume</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Status</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (a of myApplications; track $index) {
+                <tr class="text-center align-middle">
+                    <th scope="row">{{$index+1}}</th>
+
+
+
+                    <td>{{a.jobTitle}}</td>
+
+                    <td width="100px">
+                        <img [src]="a.resume" width="100%" alt="">
+                    </td>
+
+                    <td>
+                        @if(a.revertMessage){
+                        {{a?.revertMessage}}
+                        }
+                        @else{
+                        Waiting for message...
+
+                        }
+
+                    </td>
+
+
+                    <td>
+                        @if(a?.status=="pending"){
+                        <span class="badge bg-primary">Pending</span>
+                        }
+                        @if(a?.status=="shortlist"){
+                        <span class="badge bg-success">Short Listed</span>
+                        }
+                        @if(a?.status=="reject"){
+                        <span class="badge bg-danger">Rejected</span>
+                        }
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>

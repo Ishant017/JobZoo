@@ -1,0 +1,58 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Contacts</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a >Dashboard</a></li>
+              
+                <li class="breadcrumb-item text-white active" aria-current="page">Contacts</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        
+        <small></small>
+        <div class="row g-4">
+            <div class="col-md-12 ">
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+
+                    <table class="table">
+                        <thead class="table-primary table-bordered">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Created At</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for(i of contacts ; track $index){
+                            <tr>
+                                <th scope="row">{{$index+1}}</th>
+                                <td>{{i.name}}</td>
+                                <td>{{i.email}}</td>
+                                <td>{{i.subject}}</td>
+                                <td>{{i.message}}</td>
+                                <td>{{i.createdAt | date}}</td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

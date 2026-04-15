@@ -1,0 +1,111 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Register</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a routerLink="/customer/home">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Register </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Contact Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <div class="row g-5">
+
+            <div class="col-lg-8 offset-2 wow fadeIn" data-wow-delay="0.1s">
+                <p class="fs-5 fw-bold text-primary">Join Us</p>
+                <h1 class="display-5 mb-5">Create new account...</h1>
+                <p class="mb-4">Already have account? <a routerLink="/login">Login Now</a>.</p>
+                <form (submit)="submit()" #registerForm="ngForm">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name" name="e"
+                                    [(ngModel)]="userObj.name" required>
+                                <label for="name">Your Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="contact" placeholder="Your Contact"
+                                    name="e" [(ngModel)]="userObj.contact" required>
+                                <label for="contact">Your Contact</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email" name="e"
+                                    [(ngModel)]="userObj.email" required>
+                                <label for="email">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="password" class="form-control" id="password" placeholder="Password"
+                                    name="e" [(ngModel)]="userObj.password" required>
+                                <label for="password">Password</label>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="qualification" placeholder="Qualification"
+                                    name="q" [(ngModel)]="userObj.qualification" required>
+                                <label for="qualification">Your Qualification</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="work-exp" placeholder="Your Work Experience"
+                                    name="we" [(ngModel)]="userObj.workExperience" required>
+                                <label for="work-exp">Your Work Experience</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="awards" placeholder="Your Awards" name="a"
+                                    [(ngModel)]="userObj.awards" required>
+                                <label for="awards">Your Awards</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="about" placeholder="About" name="e"
+                                    [(ngModel)]="userObj.about" required>
+                                <label for="about">About</label>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary py-3 px-4" type="submit"
+                                [disabled]="registerForm.invalid">Register</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-lg-3"></div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Contact End -->
+
+
+
+<!-- Back to Top -->
+<a href="/customer/register" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>

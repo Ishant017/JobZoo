@@ -1,0 +1,102 @@
+<div class="container-fluid py-5 bg-dark page-header ">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Manage Jobs</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a routerLink="/admin/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Manage Job</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container my-5 pt-5 pb-4">
+    <div class="tab-class  wow fadeInUp" data-wow-delay="0.3s">
+        <div class="row">
+            <div class="col-lg-10">
+                <h1>Manage Jobs</h1>
+            </div>
+            <div class="col-lg-2 text-end">
+                <button class="btn btn-outline-success btn-sm" routerLink="/admin/job/add"> + Add Job</button>
+            </div>
+        </div>
+
+        <table class="table table-hover table-bordered table-striped">
+            <thead class="table-primary">
+                <tr class="text-center align-middle">
+                    <th scope="col" style="width: 50px;">#</th>
+                    <th scope="col" style="width: 150px;">Image</th>
+                    <th scope="col">Job Details</th>
+                    <th scope="col">Requirements</th>
+                    <th scope="col" style="width: 120px;" class="text-nowrap">Last Apply Date</th>
+                    <th scope="col" style="width: 120px;" class="text-nowrap">Status</th>
+                    <th scope="col" style="width: 120px;">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (a of jobs; track $index) {
+                <tr class="align-middle">
+                    <th scope="row" class="text-center">{{$index+1}}</th>
+                    <td class="text-center">
+                        <img [src]="a.imageUrl" class="img-fluid rounded" style="max-height: 100px; max-width: 120px;"
+                            alt="Company Logo">
+                    </td>
+
+                    <td>
+                        <div class="fw-bold text-primary">{{a.jobTitle}}</div>
+                        <div><span class="text-muted">Category:</span> {{a?.categoryName}}</div>
+                        <div><span class="text-muted">Type:</span> {{a.type}}</div>
+                        <div><span class="text-muted">Salary:</span> {{a.expectedSalary | currency:"INR"}}</div>
+                    </td>
+
+                    <td>
+                        <div><span class="text-muted">Education:</span> {{a.education}}</div>
+                        <div><span class="text-muted">Experience:</span> {{a.workExperience}}</div>
+                        <div class="mt-2"><span class="text-muted">Roles:</span> {{a?.roles}}</div>
+                        <div class="mt-2"><span class="text-muted">Description:</span> {{a?.description}}</div>
+                    </td>
+
+
+
+                    <td class="text-center">
+                        {{a?.lastApplyDate | date}}
+                    </td>
+
+                    <td>
+                        @if(a.status){
+                        <span class="badge bg-success">Active</span>
+
+                        }
+                        @else{
+                        <span class="badge bg-danger">Inactive</span>
+                        }
+
+                    </td>
+
+                    <td class="text-center">
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-outline-primary btn-sm" [routerLink]="['/admin/job/update',a?.id]"
+                                title="Edit" data-bs-toggle="tooltip">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            @if(a.status){
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteJob(a?.id, false)"
+                                title="Delete" data-bs-toggle="tooltip">
+                                <i class="bi bi-trash"></i>
+                            </button>
+
+                            }
+                            @else {
+                            <button class="btn btn-outline-danger btn-sm" (click)="deleteJob(a?.id,true)" title="Delete"
+                                data-bs-toggle="tooltip">
+                                <i class="bi bi-check"></i>
+                            </button>
+
+                            }
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>

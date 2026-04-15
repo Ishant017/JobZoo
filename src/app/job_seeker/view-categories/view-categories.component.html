@@ -1,0 +1,61 @@
+<div class="container-fluid py-5 bg-dark page-header">
+    <div class="container my-5 pt-4 pb-5 ">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Categories</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item " aria-current="page"><a routerLink="/customer/home">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Categories</li>
+
+            </ol>
+        </nav>
+    </div>
+</div>
+
+
+<!-- Category Start -->
+<div class="container-fluid py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
+        <div class="row g-4">
+
+
+            @for(cat of categories; track $index){
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a class="cat-item rounded p-4">
+                    <!-- <i class="fa fa-3x fa-mail-bulk text-success mb-4"></i> -->
+                    <a [routerLink]="['/jobs/category',cat.id]">
+                        <h6 class="mb-3">{{cat.name}}</h6>
+                    </a>
+                    <p class="mb-0">{{cat.description}}</p>
+                </a>
+            </div>
+            }
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Back to Top -->
+<a href="/customer/view-category" class="btn btn-lg btn-success btn-lg-square back-to-top"><i
+        class="bi bi-arrow-up"></i></a>
+<!---  <div class="container my-5 pt-4 pb-5 ">
+        <h1 class="display-3  mb-3 animated slideInDown">Category</h1>
+        <div class="row g-4 text-center">
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a class="cat-item rounded p-4" href="">
+                    <i class="fa fa-3x fa-user-tie text-success mb-4"></i>
+                    <h1 class="display-4 " data-toggle="counter-up" >1234</h1>
+                    <span class="fs-5 fw-semi-bold ">Happy Job Seekers</span>
+                </a>
+            </div>
+        </div>
+    </div>-->

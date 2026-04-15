@@ -1,0 +1,135 @@
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Update Job</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb text-uppercase">
+                <li class="breadcrumb-item"><a routerLink="/admin/manage-jobs">Manage Jobs</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Update Job</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="container-fluid py-2">
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-8 offset-2 wow fadeIn" data-wow-delay="0.1s">
+
+                <form (submit)="submit()" #jobForm="ngForm">
+                    <div class="row g-3">
+
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required id="job-title" placeholder="Job title"
+                                    name="job-title" [(ngModel)]="jobObj.jobTitle">
+                                <label for="job-title">Job title</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select type="text" class="form-select" id="categoryId" name="categoryId" required
+                                    [(ngModel)]="jobObj.categoryId" (change)="selectCat($event)">
+
+                                    <option value="" selected disabled>Choose Category</option>
+
+                                    @for (x of categories; track $index) {
+                                    <option [value]="x?.id">{{x?.name}}</option>
+                                    }
+
+                                </select>
+                                <label for="categoryId">Category</label>
+
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required id="edu" placeholder="Education"
+                                    name="Education" [(ngModel)]="jobObj.education">
+                                <label for="edu">Education</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required id="workexp"
+                                    placeholder="Work experience" name="Work experience"
+                                    [(ngModel)]="jobObj.workExperience">
+                                <label for="workexp">Work experience</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" required id="jobType" placeholder="Job Type"
+                                    name="jobType" [(ngModel)]="jobObj.type">
+                                <label for="jobType">Job Type</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" required id="expSal"
+                                    placeholder="Expected Salary" name="ExpectedSalary"
+                                    [(ngModel)]="jobObj.expectedSalary">
+                                <label for="expSal">Expected Salary</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" required id="lastdate"
+                                    placeholder="Last apply date" name="Last apply date"
+                                    [(ngModel)]="jobObj.lastApplyDate" [min]="today">
+                                <label for="lastdate">Last apply date</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="file" class="form-control" required id="image" name="image"
+                                    (change)="uploadFile($event)" required>
+                                <label for="image">Image </label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" required placeholder="Roles" id="roles"
+                                    style="height: 80px" name="role" [(ngModel)]="jobObj.roles"></textarea>
+                                <label for="roles">Roles</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" required placeholder="Leave a message here"
+                                    id="Description" style="height: 100px" name="description"
+                                    [(ngModel)]="jobObj.description"></textarea>
+                                <label for="Description">Description</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12">
+                            <button class="btn btn-primary py-3 px-4" type="submit" [disabled]="jobForm.invalid">Update
+                                Job</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+</div>

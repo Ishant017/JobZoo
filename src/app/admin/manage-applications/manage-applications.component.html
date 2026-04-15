@@ -1,0 +1,135 @@
+<!-- Header End -->
+<div class="container-fluid py-5 bg-dark page-header mb-5">
+    <div class="container my-5 pt-5 pb-4">
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Applications</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item "><a routerLink="/admin/dashboard">Dashboard</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Job Seekers</li>
+                    <!--- <li class="breadcrumb-item text-dark"><a routerLink="/admin/manage-category">Categories</a></li>-->
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Jobs Start -->
+<div class="container my-5 pt-5 pb-4">
+    <div class="tab-class  wow fadeInUp" data-wow-delay="0.3s">
+
+        <div class="mb-4">
+            <div class="input-group">
+              <span class="input-group-text"><i class="bi bi-search"></i></span>
+
+              <select type="text" class="form-control" placeholder="Search Shortlisted Candidates" (change)="getStatus($event)">
+
+                <option value="" selected disabled>View Candidates by status</option>
+                <option value="">All</option>
+                <option value="pending">Pending</option>
+                <option value="shortlist">Short Listed</option>
+                <option value="reject">Rejected</option>
+              </select>
+            </div>
+          </div>
+
+
+        <table class="table table-hover table-bordered">
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th scope="col">#</th>
+
+                    <th scope="col">Applicant Detail</th>
+                    <th scope="col">Job Title</th>
+                    <th scope="col">Resume</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @for (a of myApplications; track $index) {
+                <tr class="text-center align-middle">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>
+                        <strong>Name : </strong> <span> {{a.userName}}</span> <br>
+                        <strong>Email : </strong> <span> {{a.userEmail}}</span> <br>
+                        <strong>Ph No. : </strong> <span> {{a.userContact}}</span>
+                    </td>
+                    <td>{{a.jobTitle}}</td>
+
+                    <td width="100px">
+                        <a [href]="a.resume" target="_blank">
+                            <img [src]="a.resume" width="100%" alt="">
+                        </a>
+                    </td>
+
+                    <td>
+                        @if(a.revertMessage){
+                        {{a?.revertMessage}}
+                        }
+                        @else{
+                        Waiting for message...
+
+                        }
+
+                    </td>
+
+                    <td>
+                        @if(a?.status=="pending"){
+                        <span class="badge bg-primary">Pending</span>
+                        }
+                        @if(a?.status=="shortlist"){
+                        <span class="badge bg-success">Short Listed</span>
+                        }
+                        @if(a?.status=="reject"){
+                        <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+
+                    <td>
+                        @if(a?.status=="pending"){
+                        <button class="btn btn-outline-success btn-sm mx-1"
+                            (click)="openMessageModal(a.id, 'shortlist')">Short List</button>
+                        <button class="btn btn-outline-danger btn-sm mx-1"
+                            (click)="openMessageModal(a.id, 'reject')">Reject</button>
+
+                        }
+                        @else{
+                        -
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="messageModalLabel">Send a Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form (ngSubmit)="sendMessage()" #addForm="ngForm">
+                <div class="modal-body">
+                    <textarea class="form-control" id="messageInput" rows="3" placeholder="Type your message here..."
+                        required [(ngModel)]="applicationObj.revertMessage" name="revertMessage"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Send Message</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
